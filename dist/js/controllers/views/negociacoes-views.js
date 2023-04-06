@@ -25,8 +25,4 @@ export class NegociacoesViews extends View {
         </table>
         `;
     }
-    update(model) {
-        const template = this.template(model);
-        this.elemento.innerHTML = template;
-    }
 }
