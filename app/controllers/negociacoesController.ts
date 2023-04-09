@@ -9,7 +9,7 @@ export class NegociacaoController {
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociacoes = new Negociacoes
-    private negociacoesView = new NegociacoesViews("#negociacoesView")
+    private negociacoesView = new NegociacoesViews("#negociacoesView", true)
     private mensagemView = new MensagemView("#mensagemView")
 
     constructor(){
@@ -20,7 +20,9 @@ export class NegociacaoController {
     }
 
     public adicionar(): void{
-        const negociacao = this.criaNegociacao()
+        const negociacao = Negociacao.criaNegociacao(
+            this.inputData.value, this.inputQuantidade.value, this.inputValor.value
+        )
         if(!this.ehDiaUtil(negociacao.data)){
             this.mensagemView.update("Apenas negociações em dias úteis são permitidas!")
             return;
