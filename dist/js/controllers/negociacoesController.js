@@ -1,8 +1,8 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
-import { NegociacoesViews } from "./views/negociacoes-views.js";
-import { MensagemView } from "./views/mensagem-view.js";
-import { DiasDaSemana } from '../enums/dias-da-semana';
+import { NegociacoesViews } from "../views/negociacoes-views.js";
+import { MensagemView } from "../views/mensagem-view.js";
+import { DiasDaSemana } from '../enums/dias-da-semana.js';
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes;
@@ -20,18 +20,11 @@ export class NegociacaoController {
             return;
         }
         this.negociacoes.adiciona(negociacao);
-        this.atualizaView();
         this.limpaFormulario();
+        this.atualizaView();
     }
     ehDiaUtil(data) {
         return data.getDay() > DiasDaSemana.DOMINGO && data.getDay() < DiasDaSemana.SABADO;
-    }
-    criaNegociacao() {
-        const exp = /-/g;
-        const date = new Date(this.inputData.value.replace(exp, ","));
-        const quantidade = parseInt(this.inputQuantidade.value);
-        const valor = parseFloat(this.inputValor.value);
-        return new Negociacao(date, quantidade, valor);
     }
     limpaFormulario() {
         this.inputData.value = '';

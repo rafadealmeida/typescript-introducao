@@ -1,4 +1,4 @@
-import { Negociacoes } from "../../models/negociacoes.js";
+import { Negociacoes } from "../models/negociacoes";
 import { View } from "./views.js";
 
 export class NegociacoesViews extends View <Negociacoes> {
@@ -29,7 +29,7 @@ export class NegociacoesViews extends View <Negociacoes> {
         `;
     }
     private formatData(data: Date): string {
-        return new Intl.DateTimeFormat().format(data)
+        return new Intl.DateTimeFormat().format(data);
     }
 
 }
