@@ -3,10 +3,16 @@ export abstract class View<T>{
     private escape = false;
 
     constructor(seletor : string, escape? : boolean ){
-        this.elemento = document.querySelector(seletor);
-        if(escape){
-            this.escape = escape;
+        const elemento =  document.querySelector(seletor)
+        if(elemento){
+            this.elemento = elemento as HTMLElement;
         }
+        else{
+            throw new Error(`Elemento ${seletor} não está no DOM. Verifique!`);
+        }
+        if(escape){
+        this.escape = escape;
+            }
     }
     public update( model: T ): void{
         let template = this.template(model)
